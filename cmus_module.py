@@ -1,3 +1,4 @@
+#!/usr/bin/python
 # py3status module for displaying status of cmus music player
 """
 Displays status of cmus music player
@@ -63,7 +64,10 @@ class Py3status:
             if attributes[0] in {"status", "duration", "position", "file"}:
                 tokens[attributes[0]] = ''.join(attributes[1:])
             else:
-                tokens[attributes[1]] = attributes[2]
+                try:
+                    tokens[attributes[1]] = attributes[2]
+                except IndexError:
+                    continue
 
         return tokens
 
